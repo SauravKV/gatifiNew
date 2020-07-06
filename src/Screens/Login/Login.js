@@ -1,13 +1,21 @@
 import React , {Component} from 'react';
 import {View,Text,TextInput,Alert,StyleSheet,ImageBackground,TouchableHighlight,Dimensions,Image,CheckBox} from 'react-native';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {mobileNumberChange} from '../Login/LoginAction'
+import{loginReducer} from '../Login/LoginReducer'
 const {width, height} = Dimensions.get('window');
+
 export class Login extends Component{
     constructor(props){
         super(props);
         this.state={
-            mobile:'',
             isChecked:false
         }
+    }
+
+    setMobile =(mobileNumber)=>{
+        this.props.mobileNumberChange(mobileNumber);
     }
 
     render(){
@@ -106,17 +114,21 @@ export class Login extends Component{
                          
                     </View>
                     <View style={styles.secondHalfOtherComp}>
+                        <Text >
+                        {this.props.mobileNumber}
+                        </Text> 
                         <View style={styles.otherfirst}>
+                        {this.props.mobileNumber}
                         <TextInput
                             style={styles.textInput}
                             placeholder="Mobile number(10 digit)/Email address"
-                            keyboardType='phone-pad'
+                            onChangeText={text => this.setMobile(text)}
                         ></TextInput>
                         </View>
                         <View style={styles.othersecond}>
                              <TouchableHighlight
                                 style={styles.buttonContainerLoginOTP}
-                                // onPress={() => this.props.navigation.navigate('Login')}
+                             onPress={() => this.props.navigation.navigate('AddAptFromSearch')}
                                 >
                                 <Text style={styles.otpbtn}>Sign In using OTP</Text>
                                 </TouchableHighlight>
@@ -456,7 +468,16 @@ const styles=StyleSheet.create({
     
 });
 
+const mapStateToProps = (state) => {
+    return{
+        mobileNumber : state.mobileNumber
+    };
+  };
 
-  export default Login
-
-//export default LoginFour
+  const mapDispatchToProps = (dispatch) => (
+      {
+        mobileNumberChange: (mobileNumber) => {
+        dispatch(mobileNumberChange(mobileNumber));
+        },
+ });
+  export default connect(mapStateToProps, mapDispatchToProps)(Login)
