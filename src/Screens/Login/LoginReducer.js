@@ -1,7 +1,7 @@
 import {MOBILE_NUMBER_CHANGE} from '../Login/constant'
 import {Alert} from 'react-native'
 const initialState = {
-    mobileNumber: ""
+    mobileNumber: "8904720085"
     };
     const loginReducer = (state = initialState, action) => {
         
