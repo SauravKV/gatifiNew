@@ -10,6 +10,8 @@ import {RegistrationTwo} from '../Registration/RegistrationTwo'
 import {RegistrationFour} from '../Registration/RegistrationFour'
 import {RegistrationThird} from '../Registration/RegistrationThird'
 import {RegistrationFive} from '../Registration/RegistrationFive'
+import {MenuList} from '../MenuList/MenuList'
+import {NoticeBox} from '../NoticeBox/NoticeBox'
 
 
 
@@ -20,7 +22,7 @@ export class Stackroute extends Component{
   render(){
     return(
       <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Registraion one">   
+      <Drawer.Navigator initialRouteName="NoticeBox">   
       <Stack.Screen name="Sign Up" 
       component={Login} 
       options={{ swipeEnabled: false }}
@@ -54,7 +56,15 @@ export class Stackroute extends Component{
       <Stack.Screen name="RegistrationFive"
         component={RegistrationFive}
         options={{ swipeEnabled: false }}
-      />    
+      /> 
+      <Stack.Screen name="MenuList"
+        component={MenuList}
+        options={{ swipeEnabled: false }}
+      />  
+      <Stack.Screen name="NoticeBox"
+        component={NoticeBox}
+        options={{ swipeEnabled: false }}
+      />   
     
       </Drawer.Navigator>
     </NavigationContainer>

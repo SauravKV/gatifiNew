@@ -1,16 +1,19 @@
 import React , {Component} from 'react';
-import {View,TextInput,Text,ScrollView,Image,StyleSheet,Dimensions,TouchableHighlight} from 'react-native';
+import {View,TextInput,Text,ScrollView,StyleSheet,Dimensions,TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImageHeader from '../../Components/RegistrationComp/HeaderImg'
 const {width, height} = Dimensions.get('window');
 
 export class AddAptFromSearch extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             search:'',
             name:'Arjun Singh'
         }
+    }
+    searchName=(searchText)=>{
+        this.props.searchAction(searchText);
     }
 
     render(){
@@ -22,7 +25,7 @@ export class AddAptFromSearch extends Component{
                        <ImageHeader />
                         <View style={styles.welcomeview}>
                             <Text style={styles.textstyle}>Welcome</Text>
-                            <Text style={styles.textstyle}>{this.state.name}</Text> 
+                            <Text style={styles.textstyle}>{this.state.name}</Text>          
                         </View>
                         <View style={styles.serachview}>
                             <View style={styles.searchCompStyle}>
@@ -34,6 +37,7 @@ export class AddAptFromSearch extends Component{
                                     style={styles.inputstyles}
                                     placeholder="Search to add your apartment"
                                     keyboardType='default'
+                                    onChangeText={(text)=>this.searchName(text)}
                                     >
                                     </TextInput>
                                 </View>
@@ -188,5 +192,7 @@ const styles=StyleSheet.create({
         fontSize:12
     }
 })
+
+
 
 export default AddAptFromSearch
